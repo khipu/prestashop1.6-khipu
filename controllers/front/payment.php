@@ -79,6 +79,8 @@ class KhipuPaymentPaymentModuleFrontController extends ModuleFrontController
             'payer_email' => $customer->email
         ,
             'expires_date' => $timeout
+        ,
+            'bank_id' => Tools::getValue('bank_id')
         );
 
 
