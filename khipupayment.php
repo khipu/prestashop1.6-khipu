@@ -18,7 +18,7 @@
 class KhipuPayment extends PaymentModule
 {
     
-    const PLUGIN_VERSION = '2.6.3';
+    const PLUGIN_VERSION = '2.6.4';
 
     protected $errors = array();
 
