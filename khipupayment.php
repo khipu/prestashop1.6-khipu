@@ -54,6 +54,7 @@ class KhipuPayment extends PaymentModule
         $this->simpleTransfer = Configuration::get('KHIPU_SIMPLE_TRANSFER_ENABLED');
         $this->regularTransfer = Configuration::get('KHIPU_REGULAR_TRANSFER_ENABLED');
         $this->payme = Configuration::get('KHIPU_PAYME_ENABLED');
+        $this->webpay = Configuration::get('KHIPU_WEBPAY_ENABLED');
 
         $this->hoursTimeout = (Configuration::get('KHIPU_HOURS_TIMEOUT') ? Configuration::get(
             'KHIPU_HOURS_TIMEOUT'
@@ -206,6 +207,7 @@ class KhipuPayment extends PaymentModule
                 'simpleTransfer' => Configuration::get('KHIPU_SIMPLE_TRANSFER_ENABLED'),
                 'regularTransfer' => Configuration::get('KHIPU_REGULAR_TRANSFER_ENABLED'),
                 'payme' => Configuration::get('KHIPU_PAYME_ENABLED'),
+                'webpay' => Configuration::get('KHIPU_WEBPAY_ENABLED'),
                 'merchantID'  => Configuration::get('KHIPU_MERCHANTID')
             )
         );
@@ -226,6 +228,7 @@ class KhipuPayment extends PaymentModule
             Configuration::updateValue('KHIPU_SIMPLE_TRANSFER_ENABLED', Tools::getValue('simpleTransfer'));
             Configuration::updateValue('KHIPU_REGULAR_TRANSFER_ENABLED', Tools::getValue('regularTransfer'));
             Configuration::updateValue('KHIPU_PAYME_ENABLED', Tools::getValue('payme'));
+            Configuration::updateValue('KHIPU_WEBPAY_ENABLED', Tools::getValue('webpay'));
 
             if ((int)Tools::getValue('hoursTimeout') > 0) {
                 Configuration::updateValue('KHIPU_HOURS_TIMEOUT', (int)Tools::getValue('hoursTimeout'));
@@ -238,10 +241,12 @@ class KhipuPayment extends PaymentModule
 	$paymentMethodAvailable['simpleTransfer'] = false;
 	$paymentMethodAvailable['regularTransfer'] = false;
 	$paymentMethodAvailable['payme'] = false;
+	$paymentMethodAvailable['webpay'] = false;
 
 	if($this->context->currency->iso_code == 'CLP'){
 		$paymentMethodAvailable['simpleTransfer'] = true;
 		$paymentMethodAvailable['regularTransfer'] = true;
+        $paymentMethodAvailable['webpay'] = true;
 	}
 
 	if($this->context->currency->iso_code == 'BOB'){
@@ -251,15 +256,16 @@ class KhipuPayment extends PaymentModule
 
         $shopDomainSsl = Tools::getShopDomainSsl(true, true);
         $this->context->smarty->assign(
-	array(
-		'paymentMethodAvailable' => $paymentMethodAvailable,
+            array(
+                'paymentMethodAvailable' => $paymentMethodAvailable,
                 'errors' => $this->errors,
                 'post_url' => $_SERVER['REQUEST_URI'],
                 'data_merchantid' => $this->merchantID,
-		'data_secretcode' => $this->secretCode,
-		'data_simpleTransfer' => $this->simpleTransfer,
-		'data_regularTransfer' => $this->regularTransfer,
-		'data_payme' => $this->payme,
+                'data_secretcode' => $this->secretCode,
+                'data_simpleTransfer' => $this->simpleTransfer,
+                'data_regularTransfer' => $this->regularTransfer,
+                'data_payme' => $this->payme,
+                'data_webpay' => $this->webpay,
                 'data_hoursTimeout' => $this->hoursTimeout,
                 'version' => $this->version,
                 'api_version' => '2.0',

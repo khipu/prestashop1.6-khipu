@@ -53,16 +53,21 @@
         <label for="secretCode">{l s='Tipos de pago habilitados' mod='khipupayment'}</label>
 
         <div class="margin-form">
-	    {if $paymentMethodAvailable["simpleTransfer"]}
-		<input type="checkbox" name="simpleTransfer" {if $data_simpleTransfer}checked{/if} value="1"> Transferencia simplificada (con
-                    terminal de pagos khipu)<br>
-	    {/if}
-	    {if $paymentMethodAvailable["regularTransfer"]}
-		<input type="checkbox" name="regularTransfer" {if $data_regularTransfer}checked{/if} value="1"> Transferencia normal<br>
-	    {/if}
-	    {if $paymentMethodAvailable["payme"]}
-		<input type="checkbox" name="payme" {if $data_payme}checked{/if} value="1"> Pago con Tarjeta bancaria<br>
-	    {/if}
+            {if $paymentMethodAvailable["simpleTransfer"]}
+            <input type="checkbox" name="simpleTransfer" {if $data_simpleTransfer}checked{/if} value="1"> Transferencia simplificada (con
+                        terminal de pagos khipu)<br>
+            {/if}
+            {if $paymentMethodAvailable["regularTransfer"]}
+            <input type="checkbox" name="regularTransfer" {if $data_regularTransfer}checked{/if} value="1"> Transferencia normal<br>
+            {/if}
+
+            {if $paymentMethodAvailable["webpay"]}
+                <input type="checkbox" name="webpay" {if $data_webpay}checked{/if} value="1"> khipu WebPay<br>
+            {/if}
+
+            {if $paymentMethodAvailable["payme"]}
+            <input type="checkbox" name="payme" {if $data_payme}checked{/if} value="1"> Pago con Tarjeta bancaria<br>
+            {/if}
         </div>
 
         <label for="merchantID">{l s='Horas para realizar el pago (pasado este tiempo la orden se cancela y se recupera el stock)' mod='khipupayment'}</label>
