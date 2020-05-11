@@ -1,6 +1,6 @@
-#El soporte de prestashop 1.6 ya está descontinuado, por favor actualice a 1.7#
+#El soporte de prestashop 1.6 ya está descontinuado, por favor actualice a 1.7
 
-#Aceptar pagos con khipu en Prestashop#
+#Aceptar pagos con khipu en Prestashop
 
 En este manual se explica como configurar khipu para ser usado como medio de pago en Prestashop (http://www.prestashop.com/).
 
